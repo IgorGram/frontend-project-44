@@ -1,10 +1,4 @@
-import { startGame } from '../index.js';
-
-const getRandomNumber = (min, max) => {
-  let randomNumber = min + (Math.random() * ((max + 1) - min));
-  randomNumber = Math.floor(randomNumber);
-  return randomNumber;
-};
+import { startGame, getRandomNumber } from '../index.js';
 
 const getCorrectAnswerByCondition = (number) => (number % 2 === 0 ? 'yes' : 'no');
 const generalQuestion = 'Answer "yes" if the number is even, otherwise answer "no".';

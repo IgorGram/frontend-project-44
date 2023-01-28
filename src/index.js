@@ -9,6 +9,12 @@ const printText = (text) => {
   console.log(text);
 };
 
+export const getRandomNumber = (min, max) => {
+  let randomNumber = min + (Math.random() * ((max + 1) - min));
+  randomNumber = Math.floor(randomNumber);
+  return randomNumber;
+};
+
 export const greeting = () => {
   printText('Welcome to the Brain Games!');
   gameInfo.username = readlineSync.question('May I have your name? ');
@@ -26,7 +32,6 @@ export const startGame = (generalQuestion, getQuestionCondition, getCorrectAnswe
   printText(generalQuestion);
   while (gameInfo.maxRepetitionNumber > 0) {
     const questionCondition = getQuestionCondition();
-    console.log(questionCondition);
     askQuestion(questionCondition);
     const userAnswer = getUserAnswer();
     const correctAnswer = getCorrectAnswer(questionCondition);
