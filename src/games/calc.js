@@ -14,9 +14,7 @@ const getCorrectAnswerByCondition = (expression) => {
   if (operator === '-') {
     return Number(firstOperand) - Number(secondOperand);
   }
-  if (operator === '*') {
-    return Number(firstOperand) * Number(secondOperand);
-  }
+  return Number(firstOperand) * Number(secondOperand);
 };
 
 const generalQuestion = 'What is the result of the expression?';

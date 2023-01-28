@@ -10,7 +10,6 @@ const getQuestionCondition = () => {
 const getCorrectAnswerByCondition = (expression) => {
   let firstOperand = Number(expression.split(' ')[0]);
   let secondOperand = Number(expression.split(' ')[1]);
-  let gcd;
 
   while (firstOperand !== secondOperand) {
     if (firstOperand > secondOperand) {
@@ -19,8 +18,7 @@ const getCorrectAnswerByCondition = (expression) => {
       secondOperand -= firstOperand;
     }
   }
-  gcd = firstOperand;
-  return gcd;
+  return firstOperand;
 };
 const generalQuestion = 'Find the greatest common divisor of given numbers.';
 

@@ -12,7 +12,7 @@ const generateProgression = () => {
 };
 
 const getQuestionCondition = () => {
-  const hidingElementPosition = getRandomNumber(0, 9);
+  const hidingElementPosition = getRandomNumber(0, 8);
   const progressionArr = generateProgression().split(' ');
   progressionArr[hidingElementPosition] = '..';
 
@@ -20,15 +20,26 @@ const getQuestionCondition = () => {
 };
 
 const getCorrectAnswerByCondition = (expression) => {
-  const progressionArr = expression.split(' ');
+  const progressionArr = expression.split(' ').map(Number);
   const hidingElementPosition = expression.split(' ').indexOf('..');
+  let delta;
+  if (hidingElementPosition === 0) {
+    delta = [hidingElementPosition + 2] - [hidingElementPosition + 1];
+    return [hidingElementPosition + 1] - delta;
+  }
 
-  return (Number(progressionArr[hidingElementPosition + 1])
-          + Number(progressionArr[hidingElementPosition - 1])) / 2;
+  if (hidingElementPosition === 9) {
+    delta = progressionArr[hidingElementPosition - 1]
+        - progressionArr[hidingElementPosition - 2];
+    return progressionArr[hidingElementPosition - 1] + delta;
+  }
+
+  return (progressionArr[hidingElementPosition + 1]
+      + progressionArr[hidingElementPosition - 1]) / 2;
 };
 const generalQuestion = 'What number is missing in the progression?';
 
-const startGcdGame = () => {
+const startProgressionGame = () => {
   startGame(generalQuestion, getQuestionCondition, getCorrectAnswerByCondition);
 };
-export default startGcdGame;
+export default startProgressionGame;

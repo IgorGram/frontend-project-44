@@ -42,5 +42,5 @@ export const startGame = (generalQuestion, getQuestionCondition, getCorrectAnswe
     printText('Correct!');
     gameInfo.maxRepetitionNumber -= 1;
   }
-  printText(`Congratulations, ${gameInfo.username}`);
+  printText(`Congratulations, ${gameInfo.username}!`);
 };
