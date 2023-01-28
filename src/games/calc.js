@@ -11,7 +11,7 @@ const getRandomOperator = () => {
   return operators[Math.floor(Math.random() * operators.length)];
 };
 
-const getCorrectAnswer = (expression) => {
+const getCorrectAnswerByCondition = (expression) => {
   const [firstOperand, operator, secondOperand] = expression.split(' ');
 
   if (operator === '+') {
@@ -35,6 +35,6 @@ const getQuestionCondition = () => {
 };
 
 const startCalcGame = () => {
-  startGame(generalQuestion, getQuestionCondition, getCorrectAnswer);
+  startGame(generalQuestion, getQuestionCondition, getCorrectAnswerByCondition);
 };
 export default startCalcGame;

@@ -26,10 +26,10 @@ export const startGame = (generalQuestion, getQuestionCondition, getCorrectAnswe
   printText(generalQuestion);
   while (gameInfo.maxRepetitionNumber > 0) {
     const questionCondition = getQuestionCondition();
+    console.log(questionCondition);
     askQuestion(questionCondition);
     const userAnswer = getUserAnswer();
     const correctAnswer = getCorrectAnswer(questionCondition);
-
     if (userAnswer != correctAnswer) {
       printText(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \n Let's try again, ${gameInfo.username}!`);
       return;
