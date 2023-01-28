@@ -12,7 +12,7 @@ const generateProgression = () => {
 };
 
 const getQuestionCondition = () => {
-  const hidingElementPosition = getRandomNumber(0, 9);
+  const hidingElementPosition = getRandomNumber(0, 8);
   const progressionArr = generateProgression().split(' ');
   progressionArr[hidingElementPosition] = '..';
 
@@ -24,11 +24,11 @@ const getCorrectAnswerByCondition = (expression) => {
   const hidingElementPosition = expression.split(' ').indexOf('..');
 
   return (Number(progressionArr[hidingElementPosition + 1])
-          + Number(progressionArr[hidingElementPosition - 1])) / 2;
+      + Number(progressionArr[hidingElementPosition - 1])) / 2;
 };
 const generalQuestion = 'What number is missing in the progression?';
 
-const startGcdGame = () => {
+const startProgressionGame = () => {
   startGame(generalQuestion, getQuestionCondition, getCorrectAnswerByCondition);
 };
-export default startGcdGame;
+export default startProgressionGame;
