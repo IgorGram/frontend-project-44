@@ -5,6 +5,11 @@ export const gameInfo = {
   maxRepetitionNumber: 3,
 };
 
+const answersMap = {
+  yes: 1,
+  no: 0,
+};
+
 const printText = (text) => {
   console.log(text);
 };
@@ -26,6 +31,13 @@ export const askQuestion = (expression) => {
 };
 
 export const getUserAnswer = () => readlineSync.question('Your answer: ');
+const userAnswerToNum = (answer) => {
+  // eslint-disable-next-line no-restricted-globals
+  if (isNaN(Number(answer))) {
+    return answersMap[answer];
+  }
+  return Number(answer);
+};
 
 export const startGame = (generalQuestion, getQuestionCondition, getCorrectAnswer) => {
   greeting();
@@ -35,12 +47,12 @@ export const startGame = (generalQuestion, getQuestionCondition, getCorrectAnswe
     askQuestion(questionCondition);
     const userAnswer = getUserAnswer();
     const correctAnswer = getCorrectAnswer(questionCondition);
-    if (userAnswer != correctAnswer) {
+    if (userAnswerToNum(userAnswer) !== userAnswerToNum(correctAnswer)) {
       printText(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \n Let's try again, ${gameInfo.username}!`);
       return;
     }
     printText('Correct!');
     gameInfo.maxRepetitionNumber -= 1;
   }
-  printText(`Congratulations, ${gameInfo.username}`);
+  printText(`Congratulations, ${gameInfo.username}!`);
 };
