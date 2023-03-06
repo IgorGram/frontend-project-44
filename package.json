@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/IgorGram/frontend-project-44/workflows/hexlet-check/badge.svg)](https://github.com/IgorGram/frontend-project-44/actions)",
+  "description": "Игры разума. Набор консольных игр",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/IgorGram/frontend-project-44.git"
   },
-  "author": "",
+  "author": "Igor Grammatchikov",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/IgorGram/frontend-project-44/issues"
