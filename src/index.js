@@ -1,46 +1,49 @@
 import readlineSync from 'readline-sync';
 
-export const gameInfo = {
-  username: '',
-  maxRepetitionNumber: 3,
-};
-
-const printText = (text) => {
-  console.log(text);
-};
-
 export const getRandomNumber = (min, max) => {
   let randomNumber = min + (Math.random() * ((max + 1) - min));
   randomNumber = Math.floor(randomNumber);
   return randomNumber;
 };
 
-export const greeting = () => {
-  printText('Welcome to the Brain Games!');
-  gameInfo.username = readlineSync.question('May I have your name? ');
-  printText(`Hello, ${gameInfo.username}`);
-};
-
 export const askQuestion = (expression) => {
-  printText(`Question: ${expression}`);
+  console.log(`Question: ${expression}`);
 };
-
-export const getUserAnswer = () => readlineSync.question('Your answer: ');
 
 export const startGame = (generalQuestion, getGameSources) => {
-  greeting();
-  printText(generalQuestion);
-  while (gameInfo.maxRepetitionNumber > 0) {
+  let username = '';
+  let maxRepetitionNumber = 3;
+
+  console.log('Welcome to the Brain Games!');
+  username = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${username}`);
+  console.log(generalQuestion);
+  while (maxRepetitionNumber > 0) {
     const [questionCondition, correctAnswer] = getGameSources();
     askQuestion(questionCondition);
-    console.log(correctAnswer);
-    const userAnswer = getUserAnswer();
+    const userAnswer = readlineSync.question('Your answer: ');
     if (userAnswer !== correctAnswer) {
-      printText(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \n Let's try again, ${gameInfo.username}!`);
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \n Let's try again, ${username}!`);
       return;
     }
-    printText('Correct!');
-    gameInfo.maxRepetitionNumber -= 1;
+    console.log('Correct!');
+    maxRepetitionNumber -= 1;
   }
-  printText(`Congratulations, ${gameInfo.username}!`);
+  console.log(`Congratulations, ${username}!`);
+};
+
+export const isEven = (number) => number % 2 === 0;
+
+export const getGCD = (firstNumber, secondNumber) => {
+  let firstOperand = firstNumber;
+  let secondOperand = secondNumber;
+
+  while (firstOperand !== secondOperand) {
+    if (firstOperand > secondOperand) {
+      firstOperand -= secondOperand;
+    } else {
+      secondOperand -= firstOperand;
+    }
+  }
+  return firstOperand;
 };

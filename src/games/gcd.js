@@ -1,17 +1,8 @@
-import { startGame, getRandomNumber } from '../index.js';
+import { startGame, getRandomNumber, getGCD } from '../index.js';
 
 const getCorrectAnswer = (firstNumber, secondNumber) => {
-  let firstOperand = firstNumber;
-  let secondOperand = secondNumber;
-
-  while (firstOperand !== secondOperand) {
-    if (firstOperand > secondOperand) {
-      firstOperand -= secondOperand;
-    } else {
-      secondOperand -= firstOperand;
-    }
-  }
-  return firstOperand;
+  const gcd = getGCD(firstNumber, secondNumber);
+  return gcd.toString();
 };
 const generalQuestion = 'Find the greatest common divisor of given numbers.';
 
@@ -21,7 +12,7 @@ const getGameSources = () => {
   const questionCondition = `${randomNumber1} ${randomNumber2}`;
   const correctAnswer = getCorrectAnswer(randomNumber1, randomNumber2);
 
-  return [questionCondition, correctAnswer.toString()];
+  return [questionCondition, correctAnswer];
 };
 
 const startGcdGame = () => {
