@@ -8,38 +8,23 @@ const generateProgression = () => {
     progression.push(firstEl + step * (i - 1));
   }
 
-  return progression.join(' ');
+  return progression;
 };
 
-const getQuestionCondition = () => {
-  const hidingElementPosition = getRandomNumber(0, 8);
-  const progressionArr = generateProgression().split(' ');
-  progressionArr[hidingElementPosition] = '..';
-
-  return progressionArr.join(' ');
-};
-
-const getCorrectAnswerByCondition = (expression) => {
-  const progressionArr = expression.split(' ');
-  const hidingElementPosition = expression.split(' ').indexOf('..');
-  let delta;
-  if (hidingElementPosition === 0) {
-    delta = progressionArr[hidingElementPosition + 2] - progressionArr[hidingElementPosition + 1];
-    return progressionArr[hidingElementPosition + 1] - delta;
-  }
-
-  if (hidingElementPosition === 9) {
-    delta = progressionArr[hidingElementPosition - 1]
-        - progressionArr[hidingElementPosition - 2];
-    return Number(progressionArr[hidingElementPosition - 1]) + delta;
-  }
-
-  return (Number(progressionArr[hidingElementPosition + 1])
-      + Number(progressionArr[hidingElementPosition - 1])) / 2;
-};
 const generalQuestion = 'What number is missing in the progression?';
 
+const getGameSources = () => {
+  const hidingElementPosition = getRandomNumber(0, 8);
+  const progressionArr = generateProgression();
+  const correctAnswer = progressionArr[hidingElementPosition];
+
+  progressionArr[hidingElementPosition] = '..';
+  const questionCondition = progressionArr.join(' ');
+
+  return [questionCondition, correctAnswer.toString()];
+};
+
 const startProgressionGame = () => {
-  startGame(generalQuestion, getQuestionCondition, getCorrectAnswerByCondition);
+  startGame(generalQuestion, getGameSources);
 };
 export default startProgressionGame;

@@ -5,28 +5,32 @@ const getRandomOperator = () => {
   return operators[Math.floor(Math.random() * operators.length)];
 };
 
-const getCorrectAnswerByCondition = (expression) => {
-  const [firstOperand, operator, secondOperand] = expression.split(' ');
+const generalQuestion = 'What is the result of the expression?';
 
-  if (operator === '+') {
-    return Number(firstOperand) + Number(secondOperand);
+const getCorrectAnswer = (firstNumber, secondNumber, operator) => {
+  switch (operator) {
+    case '+':
+      return Number(firstNumber) + Number(secondNumber);
+    case '-':
+      return Number(firstNumber) - Number(secondNumber);
+    case '*':
+      return Number(firstNumber) * Number(secondNumber);
+    default:
+      throw new Error(`Unknown operator: '${operator}'!`);
   }
-  if (operator === '-') {
-    return Number(firstOperand) - Number(secondOperand);
-  }
-  return Number(firstOperand) * Number(secondOperand);
 };
 
-const generalQuestion = 'What is the result of the expression?';
-const getQuestionCondition = () => {
+const getGameSources = () => {
   const randomNumber1 = getRandomNumber(1, 30);
   const randomNumber2 = getRandomNumber(1, 30);
   const randomOperator = getRandomOperator();
+  const questionCondition = `${randomNumber1} ${randomOperator} ${randomNumber2}`;
+  const correctAnswer = getCorrectAnswer(randomNumber1, randomNumber2, randomOperator);
 
-  return `${randomNumber1} ${randomOperator} ${randomNumber2}`;
+  return [questionCondition, correctAnswer.toString()];
 };
 
 const startCalcGame = () => {
-  startGame(generalQuestion, getQuestionCondition, getCorrectAnswerByCondition);
+  startGame(generalQuestion, getGameSources);
 };
 export default startCalcGame;

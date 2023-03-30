@@ -1,15 +1,8 @@
 import { startGame, getRandomNumber } from '../index.js';
 
-const getQuestionCondition = () => {
-  const randomNumber1 = getRandomNumber(1, 30);
-  const randomNumber2 = getRandomNumber(1, 30);
-
-  return `${randomNumber1} ${randomNumber2}`;
-};
-
-const getCorrectAnswerByCondition = (expression) => {
-  let firstOperand = Number(expression.split(' ')[0]);
-  let secondOperand = Number(expression.split(' ')[1]);
+const getCorrectAnswer = (firstNumber, secondNumber) => {
+  let firstOperand = firstNumber;
+  let secondOperand = secondNumber;
 
   while (firstOperand !== secondOperand) {
     if (firstOperand > secondOperand) {
@@ -22,7 +15,16 @@ const getCorrectAnswerByCondition = (expression) => {
 };
 const generalQuestion = 'Find the greatest common divisor of given numbers.';
 
+const getGameSources = () => {
+  const randomNumber1 = getRandomNumber(1, 30);
+  const randomNumber2 = getRandomNumber(1, 30);
+  const questionCondition = `${randomNumber1} ${randomNumber2}`;
+  const correctAnswer = getCorrectAnswer(randomNumber1, randomNumber2);
+
+  return [questionCondition, correctAnswer.toString()];
+};
+
 const startGcdGame = () => {
-  startGame(generalQuestion, getQuestionCondition, getCorrectAnswerByCondition);
+  startGame(generalQuestion, getGameSources);
 };
 export default startGcdGame;
