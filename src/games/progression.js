@@ -1,8 +1,9 @@
-import { startGame, getRandomNumber } from '../index.js';
+import startGame from '../index.js';
+import getRandomNumber from '../utils.js';
 
-const generateProgression = (step, firstEl) => {
+const generateProgression = (step, firstEl, numberOfItems) => {
   const progression = [firstEl];
-  for (let i = 2; i <= 10; i += 1) {
+  for (let i = 2; i <= numberOfItems; i += 1) {
     progression.push(firstEl + step * (i - 1));
   }
 
@@ -15,7 +16,8 @@ const getGameSources = () => {
   const hidingElementPosition = getRandomNumber(0, 8);
   const step = getRandomNumber(1, 30);
   const firstEl = getRandomNumber(1, 30);
-  const progressionArr = generateProgression(step, firstEl);
+  const numberOfItems = 10;
+  const progressionArr = generateProgression(step, firstEl, numberOfItems);
   const correctAnswer = progressionArr[hidingElementPosition];
 
   progressionArr[hidingElementPosition] = '..';
