@@ -21,9 +21,9 @@ const getGameSources = () => {
   const correctAnswer = progressionArr[hidingElementPosition];
 
   progressionArr[hidingElementPosition] = '..';
-  const questionCondition = progressionArr.join(' ');
+  const question = progressionArr.join(' ');
 
-  return [questionCondition, correctAnswer.toString()];
+  return [question, correctAnswer.toString()];
 };
 
 const startProgressionGame = () => {

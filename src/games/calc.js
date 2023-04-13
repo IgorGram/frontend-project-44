@@ -25,10 +25,10 @@ const getGameSources = () => {
   const randomNumber1 = getRandomNumber(1, 30);
   const randomNumber2 = getRandomNumber(1, 30);
   const randomOperator = getRandomOperator();
-  const questionCondition = `${randomNumber1} ${randomOperator} ${randomNumber2}`;
+  const question = `${randomNumber1} ${randomOperator} ${randomNumber2}`;
   const correctAnswer = getCorrectAnswer(randomNumber1, randomNumber2, randomOperator);
 
-  return [questionCondition, correctAnswer.toString()];
+  return [question, correctAnswer.toString()];
 };
 
 const startCalcGame = () => {
