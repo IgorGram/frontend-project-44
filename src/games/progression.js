@@ -17,11 +17,11 @@ const getGameSources = () => {
   const step = getRandomNumber(1, 30);
   const firstEl = getRandomNumber(1, 30);
   const numberOfItems = 10;
-  const progressionArr = generateProgression(step, firstEl, numberOfItems);
-  const correctAnswer = progressionArr[hidingElementPosition];
+  const progression = generateProgression(step, firstEl, numberOfItems);
+  const correctAnswer = progression[hidingElementPosition];
 
-  progressionArr[hidingElementPosition] = '..';
-  const question = progressionArr.join(' ');
+  progression[hidingElementPosition] = '..';
+  const question = progression.join(' ');
 
   return [question, correctAnswer.toString()];
 };
